@@ -9,3 +9,9 @@ git reset HEAD .
 git reset --soft tag  
 ### 版本回退，不保留原始修改  
 git reset --hard tag  
+
+    CseHttpEntity<Person> httpEntity = new CseHttpEntity<>(person);
+    httpEntity.addContext("contextKey", "contextValue");
+    ResponseEntity<String> responseEntity =
+        RestTemplateBuilder.create().exchange("cse://springmvc/springmvchello/sayhello", HttpMethod.POST, httpEntity, String.class);
+    System.out.println("tank test :  "+responseEntity.getBody());
