@@ -1,131 +1,49 @@
 # OpenSourceExperience
-# Java Chassis [![Build Status](https://travis-ci.org/ServiceComb/java-chassis.svg?branch=master)](https://travis-ci.org/ServiceComb/java-chassis?branch=master)[![Coverage Status](https://coveralls.io/repos/github/ServiceComb/java-chassis/badge.svg?branch=master)](https://coveralls.io/github/ServiceComb/java-chassis?branch=master)
-ServiceComb Java Chassis is a Software Development Kit (SDK) for rapid development of microservices in Java, providing service registration, service discovery, dynamic routing, and service management features
+# 创建订单 
+## 入参--两个pojo对象
+### 航班号 String（去）
+### 仓位 string 
+### 金额 long
+
+### 航班号 String（回）
+### 仓位 string 
+### 金额 long
+
+## 出参
+### 创建是否成功 boolean
+
+# 查询所有订单 pojo数组
+## 入参
+### 无 
+
+## 返回值
+### 订单号
+### 航班号 String 必选
+### 名称：显示起始目的地  string  必选
+### 航班日期时间 string  必选
+### 仓位 string 必选
+### 金额 long 必选
+### 订单生成时间 string 必选
+### 状态: 未支付 (支付)-> 已支付、已退款
+
+# 支付
+## 入参
+### 订单号
+
+## 出参
+### 是否支付成功
 
 
-## Quick Start
+# 退款
+## 入参
+### 订单号
 
-Provider service:
-```java
-import io.servicecomb.*;
-@RpcSchema(schemaId = "helloworld")
-public class HelloWorldProvider implements HelloWorld {
-    public String sayHello(String name) {
-        return "Hello " + name;
-    }
-}
-```
+## 出参
+### 是否退款成功
 
-Consumer service:
-```java
-import io.servicecomb.*;
-@Component
-public class HelloWorldConsumer  {
-	@RpcReference(microserviceName = "pojo", schemaId = "helloworld")
-	private static HelloWorld helloWorld;
+# 删除订单
+## 入参
+### 订单号
 
-	public static void main(String[] args) {
-		helloWorld.sayHello("Tank");
-	}
-}
-```
-
-Provider service:
-```java
-import io.servicecomb.*;
-import javax.ws.rs.*;
-
-@RestSchema(schemaId = "helloworld")
-@Path("/helloworld")
-@Produces(MediaType.APPLICATION_JSON)
-public class HelloWorldProvider implements HelloWorld {
-    @Path("/sayHello")
-    @GET
-    public String sayHello(@Pathparam("name") String name) {
-        return "Hello " + name;
-    }
-}
-```
-
-Consumer service:
-```java
-import io.servicecomb.*;
-import org.springframework.*;
-
-@Component
-public class HelloWorldConsumer  {
-	private static RestTemplate restTemplate = RestTemplateBuilder.create();
-
-	public static void main(String[] args) {
-       String result= restTemplate.getForObject("cse://jaxrs/helloworld/syaHello?name={name}",String.class,"Tank");
-	}
-}
-```
-Provider service:
-```java
-import io.servicecomb.*;
-import org.springframework.*;
-
-@RestSchema(schemaId = "helloworld")
-@RequestMapping(path = "/helloworld",produces = MediaType.APPLICATION_JSON)
-public class HelloWorldProvider implements HelloWorld {
-
-    @RequestMapping(path = "/sayHello",method = RequestMethod.GET )
-    public String sayHello(@RequestParam("name") String name) {
-        return "Hello " + name;
-    }
-}
-```
-
-Consumer service:
-```java
-import io.servicecomb.*;
-import org.springframework.*;
-
-@Component
-public class HelloWorldConsumer  {
-	private static RestTemplate restTemplate = RestTemplateBuilder.create();
-
-	public static void main(String[] args) {
-       String result= restTemplate.getForObject("cse://springmvc/helloworld/syaHello?name={name}",String.class,"Tank");
-	}
-}
-```
-
-
-## Documentation
-
-Project documentation is available on the [ServiceComb website][servicecomb-website].
-
-[servicecomb-website]: http://servicecomb.io/
-
-
-## Building
-
-You don’t need to build from source to use Java Chassis (binaries in repo.servicecomb.io), but if you want to try out the latest and greatest, Java Chassis can be easily built with the maven.  You also need JDK 1.8.
-
-      mvn clean install
-
-The first build may take a longer than expected as Maven downloads all the dependencies.
-
-## Automated Testing
-
-  To build the docker image and run the integration tests with docker, you can use maven docker profile 
-  
-      mvn clean install -Pdocker
-      
-  If you are using docker machine, please use the following command
-  
-      mvn clean install -Pdocker -Pdocker-machine
-            
-## Contact
-
-Bugs: [issues](https://github.com/servicecomb/service-center/issues)
-
-## Contributing
-
-See CONTRIBUTING for details on submitting patches and the contribution workflow.
-
-## Reporting Issues
-
-See reporting bugs for details about reporting any issues.
+## 出参
+### 是否删除成功
