@@ -3,6 +3,9 @@
 
 
 docker run --rm -it --name zqmvn -v /root/tmp/java-chassis-0.1.0:/usr/src/project -w /usr/src/project qizha/cse-java-chassis-build mvn clean install
+## cse response
+http://maven.huaweicse.cn/nexus/content/groups/public
+117.78.32.218
 
 ## GIT
 ### 撤销上次add  
