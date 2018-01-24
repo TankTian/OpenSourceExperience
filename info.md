@@ -15,6 +15,14 @@ git reset --soft tag
 ### 版本回退，不保留原始修改  
 git reset --hard tag  
 
+### 删除远程tag 并重新创建
+git tag -d v0.0.1
+git push origin :refs/tags/v0.0.1
+git tag v0.0.1
+git push origin v0.0.1
+
+
+
     CseHttpEntity<Person> httpEntity = new CseHttpEntity<>(person);
     httpEntity.addContext("contextKey", "contextValue");
     ResponseEntity<String> responseEntity =
