@@ -16,6 +16,7 @@ git reset --soft tag
 git reset --hard tag  
 
 ### 删除远程tag 并重新创建
+git pull
 git tag -d v0.0.1
 git push origin :refs/tags/v0.0.1
 git tag v0.0.1
